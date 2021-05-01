@@ -55,7 +55,7 @@ def upload_file():
                         df.to_csv('result.csv')
                         data.has_qr_code = True
                         db.session.add(data)
-                        db.commit()
+                        db.session.commit()
                 else:
                     print("No barcode")
         data.has_qr_code = False
