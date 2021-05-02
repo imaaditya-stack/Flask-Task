@@ -1,10 +1,38 @@
 {% extends 'base.html' %} {% block body %}
-<h1>Hello World</h1>
 <div>
-    <form action="{{url_for('upload_file')}}" method="POST" enctype="multipart/form-data">
-        <label for="formFileMultiple" class="form-label">Multiple files input example</label>
-        <input class="form-control" type="file" id="formFileMultiple" multiple name="file">
-        <input type="submit" />
+    <h1 class="text-primary text-center mb-5">QR Code Decoder</h1>
+    <h3 class="text-primary">Stats</h3>
+    <table class="table table-striped mb-5">
+        <thead>
+            <tr>
+                <th scope="col">Pdfs uploaded till date</th>
+                <th scope="col">Pdfs decoded with qr code</th>
+                <th scope="col">Pdfs decoded without qr code</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{context.total_docs}}</td>
+                <td>{{context.with_qr_code}}</td>
+                <td>{{context.without_qr_code}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
+        Operation performed successfully
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <h3 class="text-primary">Upload PDFs</h3>
+    <form method="POST" enctype="multipart/form-data">
+        <input class="form-control" type="file" id="formFileMultiple" multiple name="files" accept="application/pdf" required>
+        <div class="d-grid gap-2 mt-3">
+            <button class="btn btn-primary" type="submit">Upload Files</button>
+        </div>
     </form>
+    <center>
+        <div class="spinner-border" role="status" style="display: none;">
+            <span class="sr-only"></span>
+        </div>
+    </center>
 </div>
 {% endblock %}
