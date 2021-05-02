@@ -25,6 +25,7 @@ $(document).ready(function () {
         $(".alert").show();
       },
       error: function (error) {
+        $(".spinner-border").hide();
         alert("Something Went Wrong !");
       },
     });
